@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch Data API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main id="main">
+      <!-- <div id="div">
+        <p id="id"></p>
+        <p id="name"></p>
+        <p id="username"></p>
+        <p id="email"></p>
+      </div> -->
+    </main>
+    <script>
+      async function fetchData() {
+        try {
+          const data = await fetch(
+            "https://jsonplaceholder.typicode.com/users",
+            {
+              method: "GET",
+              headers: {
+                accept: "application/json",
+              },
+            }
+          );
+          const users = await data.json();
+
+          for (let i = 0; i < users.length; i++) {
+            let user = users[i];
+            showData(user);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      function showData(user) {
+        const main = document.getElementById("main");
+        const div = document.createElement("div");
+        const id = document.createElement("p");
+        const name = document.createElement("p");
+        const username = document.createElement("p");
+        const email = document.createElement("p");
+        const address = document.createElement("p");
+        const divAddress = document.createElement("div");
+        const street = document.createElement("p");
+        const suite = document.createElement("p");
+        const city = document.createElement("p");
+        const zipcode = document.createElement("p");
+        const geo = document.createElement("p");
+        const divGeo = document.createElement("div");
+        const lat = document.createElement("p");
+        const lng = document.createElement("p");
+        const phone = document.createElement("p");
+        const website = document.createElement("p");
+        const company = document.createElement("p");
+        const divCompany = document.createElement("div");
+        const nameCompany = document.createElement("p");
+        const catchPhrase = document.createElement("p");
+        const bs = document.createElement("p");
+
+        // id.innerText = `id: ${user.id}`;
+        // name.innerText = `name: ${user.name}`;
+        // username.innerText = `username: ${user.username}`;
+        // email.innerText = `email: ${user.email}`;
+
+        id.innerText = `id: ${user.id}`;
+        name.innerText = `name: ${user.name}`;
+        username.innerText = `username: ${user.username}`;
+        email.innerText = `email: ${user.email}`;
+        address.innerText = "address:";
+        street.innerText = `street: ${user.address.street}`;
+        suite.innerText = `suite: ${user.address.suite}`;
+        city.innerText = `city: ${user.address.city}`;
+        zipcode.innerText = `zipcode: ${user.address.zipcode}`;
+        geo.innerText = "geo:";
+        lat.innerText = `lat: ${user.address.geo.lat}`;
+        lng.innerText = `lng: ${user.address.geo.lng}`;
+        phone.innerText = `phone: ${user.phone}`;
+        website.innerText = `website: ${user.website}`;
+        company.innerText = "company:";
+        nameCompany.innerText = `name: ${user.company.name}`;
+        catchPhrase.innerText = `catchPhrase: ${user.company.catchPhrase}`;
+        bs.innerText = `bs: ${user.company.bs}`;
+
+        main.classList.add("ml-4");
+        div.classList.add("mb-4");
+        divAddress.classList.add("ml-8");
+        divGeo.classList.add("ml-8");
+        divCompany.classList.add("ml-8");
+
+        main.appendChild(div);
+        div.appendChild(id);
+        div.appendChild(name);
+        div.appendChild(username);
+        div.appendChild(email);
+        div.appendChild(address);
+        div.appendChild(divAddress);
+        divAddress.appendChild(street);
+        divAddress.appendChild(suite);
+        divAddress.appendChild(city);
+        divAddress.appendChild(zipcode);
+        divAddress.appendChild(geo);
+        divAddress.appendChild(divGeo);
+        divGeo.appendChild(lat);
+        divGeo.appendChild(lng);
+        div.appendChild(phone);
+        div.appendChild(website);
+        div.appendChild(company);
+        div.appendChild(divCompany);
+        divCompany.appendChild(nameCompany);
+        divCompany.appendChild(catchPhrase);
+        divCompany.appendChild(bs);
+      }
+
+      window.addEventListener("load", fetchData);
+    </script>
+  </body>
+</html>
